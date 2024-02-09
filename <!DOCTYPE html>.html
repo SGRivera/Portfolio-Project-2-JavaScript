@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title> Color Guessing Game</title>
+</head>
+
+<body>
+    <h1>Color Guessing Game </h1>
+
+    <button type='button' onclick="runGame()"> Start Game </botton>
+        <script>
+            const COLORS_ARRAY = ['blue', 'cyan', 'gold', 'gray', 'green', 'magenta', 'orange', 'red', 'white', 'yellow']
+            function runGame() {
+                let guess = '';
+                let correct = false;
+                let numTries = 0;
+                const targetIndex = Math.floor(Math.random() * COLORS_ARRAY.length);
+                const target = COLORS_ARRAY[targetIndex]; //need to choose a color, this is an entire array
+
+                console.log('Target color is' + target);
+                // checks the value of target
+                do {
+                    guess = prompt('I am thinking of one of these colors:\n\n' + COLORS_ARRAY +
+                        '\n\nWhat color am I thinking of?\n');
+                    numTries++;
+                    if (guess === null) {
+                        return;
+                    }
+                    debugger;
+                    correct = checkGuess(guess, target);
+                } while (!correct);
+                //the extra curly braces are uneccessary here ---fixed
+                    alert('Congratulations, you got it! It took you this many times to guess correctly:' + numTries);
+                 document.body.style.background = guess;
+            }
+
+            function checkGuess(guess, target) {
+                let correct = false;
+                console.log(guess)
+                if (!COLORS_ARRAY.includes(guess)) {
+                    alert('You have entered an invalid color.');
+                }
+                else if (guess > target) { //do a strict greater than, a <= operator means it could be greater than OR equal to, if it's equal we want to return true
+                    alert('Your color is too high!');
+                } else if (guess < target) { //do a strict less than, see previous comment
+                    alert('Your color is too low!')
+                } else {
+                    correct = true;
+                }
+                return correct;
+            }
+
+
+        </script>
+
+
+
+
+
+</body>

@@ -1,0 +1,14 @@
+[
+{
+    "name": "NuCamp",
+    "numberOfEmployees": 150,
+    "ceo": "Ludo Fourrage",
+    "glassdoorRating": 5.0
+},
+{
+    "name": "small startup",
+    "numberOfEmployees": 5,
+    "ceo": null,
+    "glassdoorRating": 4.7
+}
+]

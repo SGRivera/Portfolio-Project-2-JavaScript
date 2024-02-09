@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title> Color Guessing Game</title>
+</head>
+
+<body>
+    <h1>Color Guessing Game </h1>
+
+    <button type='button' onclick="runGame()"> Start Game </botton>
+        <script>
+            const COLORS_ARRAY = ['blue', 'cyan', 'gold', 'gray', 'green', 'magenta', 'orange', 'red', 'white', 'yellow']
+
+             // create function to run game and determine correct answer
+            function runGame() {
+                let guess = '';
+                let correct = false;
+                let numTries = 0;
+                const targetIndex = Math.floor(Math.random() * COLORS_ARRAY.length);
+                const target = COLORS_ARRAY[targetIndex]; //assigning a correct value to following prompt
+
+                console.log('Target color is' + target); // checks the value of target
+                
+                do {
+                    guess = prompt('I am thinking of one of these colors:\n\n' + COLORS_ARRAY +
+                        '\n\nWhat color am I thinking of?\n'); //alert user answer was correct along with number of tries it took to guess correctly
+                    numTries++;
+                    if (guess === null) { // if user cancels game prior to playing game alert "Good bye" to user
+                        alert ('Goodbye!')
+                        return;
+                    }
+                    correct = checkGuess(guess, target); //assign the value of the variable correct 
+                } while (!correct);
+                    alert('Congratulations, you got it! It took you this many times to guess correctly:' + numTries);
+                 document.body.style.background = guess; //change background color to correct answered when guessed by user
+            }
+            //create check guess function to confirm guess against target color
+            function checkGuess(guess, target) {
+                let correct = false;
+                console.log(guess)
+                if (!COLORS_ARRAY.includes(guess)) { // if guessed color is not included in the array alert user guess was invalid
+                    alert('You have entered an invalid color.');
+                }
+                else if (guess > target) { 
+                    alert('Your color is too high!');//alert user guess surpassed correct 
+                } else if (guess < target) { 
+                    alert('Your color is too low!');//alert user guess is before correct answer 
+                } else {
+                    correct = true;
+                }
+                return correct;
+            }
+
+        </script>
+
+</body>
